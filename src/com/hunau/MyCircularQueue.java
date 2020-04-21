@@ -9,6 +9,11 @@ package com.hunau;
  * 当（tail + 1）% maxlength == front 时队列为满
  * 取出tail元素时候要判断如果当tail元素位置在0时那么队尾元素在最后一位即 data.length - 1;
  * 如果队尾元素不在最后一位时，队尾元素的下标为 tail - 1;
+ *
+ * 入队：先将所在位置赋值然后tail = （tail + 1）% maxsize
+ * 出队：直接将front往后移动一位 即 front = （front + 1） % maxsize
+ * 注意：这里front指针和tail指针都是往同一个方向上运动
+ * 数组初始化的时候容量大小要 + 1
  */
 public class MyCircularQueue {
         /**数据*/
