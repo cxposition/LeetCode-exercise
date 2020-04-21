@@ -4,6 +4,11 @@ package com.hunau;
  * @author cx
  * @Time 2020/4/21 23:54
  * @Description java 数据结构实现循环队列
+ * 这种实现方式会浪费一个存储空间，tail指向队尾元素，front指向队首
+ * 元素的下一个元素 当front == tail时队列为空
+ * 当（tail + 1）% maxlength == front 时队列为满
+ * 取出tail元素时候要判断如果当tail元素位置在0时那么队尾元素在最后一位即 data.length - 1;
+ * 如果队尾元素不在最后一位时，队尾元素的下标为 tail - 1;
  */
 public class MyCircularQueue {
         /**数据*/
@@ -64,7 +69,6 @@ public class MyCircularQueue {
         public int Rear() {
             if (!isEmpty()) {
                 return tail == 0 ? data[data.length -1] : data[tail - 1];
-
             } else {
                 return -1;
             }
@@ -86,8 +90,8 @@ public class MyCircularQueue {
 
     public static void main(String[] args) {
         MyCircularQueue circularQueue = new MyCircularQueue(3);
-        circularQueue.enQueue(1);
-        circularQueue.enQueue(2);
+        System.out.println(circularQueue.enQueue(1));
+        System.out.println(circularQueue.enQueue(2));
 
     }
 }
